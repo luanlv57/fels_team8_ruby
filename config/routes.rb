@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'words/list'
+  get 'static_pages/list'
+  get 'list' => 'static_pages#list'  
+
+
+  get 'words/filter'
+  get 'static_pages/filter'
+  get 'filter' => 'static_pages#filter'  
+
   root "static_pages#home"
   get 'static_pages/home'
 
