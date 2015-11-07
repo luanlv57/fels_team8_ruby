@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'home' => 'static_pages#home'
   get 'help' => 'static_pages#help'
+  get 'user_edit' => 'users#edit'
+  get 'user_index' => 'users#index'
+  get 'user_delete' => 'users#delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
