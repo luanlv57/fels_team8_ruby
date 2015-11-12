@@ -12,13 +12,13 @@ class SessionsController < ApplicationController
 
       # Log the user in and redirect to the user's show page.
     else
-      flash[:danger] = 'Invalid email/password combination' # Not quite right!
+      flash.now[:danger] = 'Invalid email/password combination' # Not quite right!
       render 'new'
     end
   end
 
   def destroy
-  	log_out if logged_in?
+    log_out if logged_in?
     redirect_to root_url
 
   end
