@@ -1,0 +1,17 @@
+<% provide(:title, 'All categories') %>
+<h1>All categories</h1>
+<%=link_to "Create", new_admin_category_path, class: "btn btn-lg btn-primary"%>
+<%= will_paginate %>
+
+<ul class="users">
+  <% @categories.each do |category| %>
+ 	<li>
+  <%= category.name %>
+     <%= link_to "Delete", admin_category_path(category), method: :delete,
+                                  data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
+     <%= link_to "Edit",edit_admin_category_path(category), class: "btn btn-success"%>
+</li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
