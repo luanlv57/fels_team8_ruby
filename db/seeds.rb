@@ -6,22 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-category = Category.create(name: "Basic 500")
-word = Word.create(content: "test1", category_id: category.id)
-WordAnswer.create(content: "answert", word_id: word.id)
+User.create!(name:  "Example User",
+             email: "example@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             admin: 1)
 
-category = Category.create(name: "Basic 1000")
-word = Word.create(content: "test2", category_id: category.id)
-WordAnswer.create(content: "answert", word_id: word.id)
+99.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
 
-category = Category.create(name: "Basic 500")
-word = Word.create(content: "test3", category_id: category.id)
-word_answer = WordAnswer.create(content: "answert", word_id: word.id)
-
-LessonWord.create(word_id: word.id, word_answer_id: word_answer.id)
-
-category = Category.create(name: "Basic 1000")
-word = Word.create(content: "test4", category_id: category.id)
-word_answer = WordAnswer.create(content: "answert", word_id: word.id)
-
-LessonWord.create(word_id: word.id, word_answer_id: word_answer.id)
