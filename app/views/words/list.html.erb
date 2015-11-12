@@ -1,1 +1,76 @@
-<h1>Words list</h1>
+<% provide(:title, 'Word list') %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Word list</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div align="center">
+		<form action="#" method="get" accept-charset="utf-8">
+			<select class = "btn btn-default dropdown-toggle" name="Category"  >
+				<option value="Basic 500">Basic 500</option>
+				<option value="Basic 1000">Basic 1000</option>
+			</select>
+			<label class="radio-inline">
+				<input type="radio" name="learn" id="inlineRadio1" value="learned"> Learned
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="learn" id="inlineRadio2" value="not learned"> Not learned
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="learn" id="inlineRadio3" value="all"> All
+			</label>
+			<br/><br/>
+			<input class="btn btn-default" type="submit" value="Filter">
+			<input class="btn btn-default" type="submit" value="PDF">
+			<br/><br/>
+		</form>
+
+		<table class="table">
+		<!-- save word_id lsw to check word.id -->
+		<% x = ""%>
+		<% @lesson_words.each do |lsw| %>	
+			<% x = x + '.' + lsw.word_id.to_s %>
+		<% end %>
+		<h2><%= x %></h2>
+		<tbody>
+		<!-- radio learned -->
+		<% if params[:learn] == "learned" %>
+			<% @lesson_words.each do |lsw| %>	
+				<% if lsw.word.category.name == params[:Category]%>
+				<tr>
+			    	<td><%= lsw.word.content %></td>
+			    	<td><%= lsw.word.category.name %></td>
+			  	</tr>
+				<% end %>
+			<% end %>
+		<!-- radio not learned -->
+		<% elsif params[:learn] == "not learned" %>
+			<% @words.each do |word| %>	
+				<% if word.category.name == params[:Category] and (x.include? (word.id.to_s+'.')) == false%>
+			  	<tr>
+			    	<td><%= word.content %></td>
+			    	<td><%= word.category.name %></td>
+			  	</tr>
+			  	<% end %>
+			<% end %>
+		<!-- radio all default -->
+		<% else %>
+			<% @words.each do |word| %>	
+				<% if word.category.name == params[:Category]%>
+			  	<tr>
+			    	<td><%= word.content %></td>
+			    	<td><%= word.category.name %></td>
+			  	</tr>
+			  	<% end %>
+			<% end %>
+		<%end%>
+		
+		</tbody>
+		</table>
+	</div>	
+</body>
+</html>

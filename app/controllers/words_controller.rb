@@ -1,7 +1,6 @@
 class WordsController < ApplicationController
   def list
-  end
-
-  def filter
+  	@words = Word.all
+  	@lesson_words = LessonWord.all
   end
 end
