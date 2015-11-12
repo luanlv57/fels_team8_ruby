@@ -1,20 +1,22 @@
 class Admin::UsersController < ApplicationController
-	def index
+
+	before_action :logged_in_user
+  
+  before_action :admin_user,     only: [:destroy ,:edit, :update]
+  def index
     @users = User.paginate(page: params[:page])
   end
-  def show
-    @user = User.find(params[:id])
-  end
   def edit
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
     else
+      flash[:fail] = "Profile updated failed"
       render 'edit'
     end
   end
@@ -22,9 +24,14 @@ class Admin::UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to admin_users_url
   end
-  def logged_in_user
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :email)
+    end
+    def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."
         redirect_to login_url
