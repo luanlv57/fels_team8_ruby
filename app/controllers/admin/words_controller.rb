@@ -19,7 +19,7 @@ class Admin::WordsController < ApplicationController
 		end
 	end
 	def show
-		@words = Word.where(category_id: params[:category_id])
+		
 	end
 
 	def create
@@ -61,6 +61,7 @@ class Admin::WordsController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
     end
     def word_params
+    	
     	params.require(:word).permit(:content,:category_id, word_answers_attributes: [:id, :content, :correct])
     end
 end
