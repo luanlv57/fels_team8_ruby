@@ -6,7 +6,11 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-      <%= button_to "Word", words_path, :class => "button", :method => :get  %>
+      <hr>
     </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+    <%= render 'follow_form' if logged_in? %>
   </aside>
 </div>

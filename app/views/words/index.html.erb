@@ -12,11 +12,15 @@
 			<%= radio_button_tag 'type', 'not learned'%>not learned
 		</label>
 		<br/><br/>
-		<%= submit_tag "submit"%>
-		<br/><br/>
-	</form>
+		<%= submit_tag "Filter", :class => 'btn btn-lg btn-primary'%>
+		<%= submit_tag "PDF", :class => 'btn btn-lg btn-primary'%>
+		<br/><br/><hr>
 	<table class="table">
 	<tbody>
+		<tr>
+			<td>Word</td>
+			<td>Mean</td>
+		</tr>
 		<% @words.each do |word| %>	
 			<tr>
 		    	<td><%= word.content %></td>
