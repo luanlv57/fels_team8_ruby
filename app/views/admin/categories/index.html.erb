@@ -1,6 +1,7 @@
 <% provide(:title, 'All categories') %>
 <h1>All categories</h1>
 <%=link_to "Create new category ", new_admin_category_path, class: "btn btn-lg btn-primary"%>
+
 <%= will_paginate %>
 
 <ul class="users">
@@ -10,7 +11,7 @@
      <%= link_to "Delete", admin_category_path(category), method: :delete,
                                   data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
      <%= link_to "Edit",edit_admin_category_path(category), class: "btn btn-success"%>
-     <%= link_to "Create new word",new_admin_word_path, class: "btn btn-lg btn-primary"%>
+     <%= link_to "Get words of category", [:admin, category, :words], class: "btn btn-lg btn-primary"%>
 </li>
   <% end %>
 </ul>

@@ -24,8 +24,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root "users#index"
     resources :users
-    resources :categories
-    resources :words
+    resources :categories do 
+      resources :words
+    end
+    resources :words  
   end
   resources :relationships,       only: [:create, :destroy]
   resources :words, only: [:index]

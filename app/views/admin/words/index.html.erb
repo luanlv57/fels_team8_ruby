@@ -1,13 +1,14 @@
 <% provide(:title, 'All words') %>
 <h1>All words</h1>
+<%= link_to "Create new word", new_admin_word_path, class: "btn btn-lg btn-primary" %>
 <%= will_paginate %>
 <ul class="users">
-  <% @words.each do |words| %>
+  <% @words.each do |word| %>
  	<li>
-  <%= words.name %>
-     <%= link_to "Delete", admin_words_path(category), method: :delete,
+  <%= word.content %>
+     <%= link_to "Delete", admin_word_path(word), method: :delete,
                                   data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
-     <%= link_to "Edit",edit_admin_words_path(category), class: "btn btn-success"%>
+     <%= link_to "Edit",edit_admin_word_path(word), class: "btn btn-success"%>
 </li>
   <% end %>
 </ul>

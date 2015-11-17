@@ -6,6 +6,7 @@ class Admin::CategoriesController < ApplicationController
 	end
 	def show
 		@category = Category.find(params[:id])
+		@word = @category.words
 	end
 	def edit
 		@admin = current_user
@@ -18,7 +19,7 @@ class Admin::CategoriesController < ApplicationController
 		@category = Category.new(category_params)
 		if @category.save
 			flash[:success] = "Created success"
-			redirect_to admin_category_path(@category.id)
+			redirect_to admin_categories_path
 		end
 	end
 	def update
@@ -45,5 +46,7 @@ class Admin::CategoriesController < ApplicationController
     end
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+    def list_words
     end
 end
