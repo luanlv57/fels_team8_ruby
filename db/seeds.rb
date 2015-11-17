@@ -25,6 +25,7 @@ category = Category.create(name: "Basic 500")
 word = Word.create(content: "test1", category_id: category.id)
 WordAnswer.create(content: "answert", word_id: word.id, correct: false)
 WordAnswer.create(content: "answert", word_id: word.id, correct: false)
+Lesson.create(user_id: 1)
 was = WordAnswer.create(content: "kiem tra 1", word_id: word.id, correct: true)
 LessonWord.create(lesson_id: 1, word_id: word.id, word_answer_id: was.id)
 WordAnswer.create(content: "answert", word_id: word.id, correct: false)
@@ -48,3 +49,12 @@ WordAnswer.create(content: "answert", word_id: word.id, correct: false)
 WordAnswer.create(content: "answert", word_id: word.id, correct: false)
 WordAnswer.create(content: "answert", word_id: word.id, correct: false)
 WordAnswer.create(content: "kiem tra 4", word_id: word.id, correct: true)
+
+
+# Following relationships
+users = User.all
+user  = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
