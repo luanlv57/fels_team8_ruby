@@ -19,7 +19,7 @@ class Admin::WordsController < ApplicationController
 		end
 	end
 	def show
-		
+		@word = Word.find(params[:id])
 	end
 
 	def create
@@ -47,10 +47,7 @@ class Admin::WordsController < ApplicationController
 		redirect_to admin_words_path
 	end
 	private
-	def word_params
-    	params.require(:word).permit( :content, :category_id,
-      answers_attributes: [:id, :content, :correct])
-  	end
+	
 	def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."

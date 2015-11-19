@@ -3,14 +3,31 @@
 <%= link_to "Create new word", new_admin_word_path, class: "btn btn-lg btn-primary" %>
 <%= will_paginate %>
 <ul class="users">
-  <% @words.each do |word| %>
- 	<li>
-  <%= word.content %>
-     <%= link_to "Delete", admin_word_path(word), method: :delete,
-                                  data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
-     <%= link_to "Edit",edit_admin_word_path(word), class: "btn btn-success"%>
-</li>
-  <% end %>
+  
+  <div class="container">         
+	  		<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>Word</th>
+		        <th>Delete</th>
+		        <th>Edit</th>
+		        <th>Show</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		    <% @words.each do |word| %>
+		      <tr>
+		        <td><%= word.content %></td>
+		        <td><%= link_to "Delete", admin_word_path(word), method: :delete,
+                                  data: { confirm: "Are you sure?" }, class: "btn btn-success" %></td>
+		        <td><%= link_to "Edit",edit_admin_word_path(word), class: "btn btn-success"%></td>
+				<td><%= link_to "Show",admin_word_path(word), class: "btn btn-success"%></td>
+		      </tr>
+		      <% end %>
+		     </tbody>
+		  	</table>
+		</div>
+  
 </ul>
 
 <%= will_paginate %>
